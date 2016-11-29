@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib import admin
 
-from blog.controller import home, room
+from blog.views import home, room
 
 
 urlpatterns = [
