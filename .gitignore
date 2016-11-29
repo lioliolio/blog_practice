@@ -95,4 +95,4 @@ db.sqlite3
 *.swp
 
 # Django migrations
-migrations
+# migrations
