@@ -17,13 +17,23 @@ def room(request, room_id):
 
 def news(request):
 
+    search = request.GET.get("search")
+
     url = "https://watcha.net/home/news.json?page=1&per=50"
     response = requests.get(url)
 
     news_dict = json.loads(response.text)
+    news_list = news_dict.get("news")
+
+    if search:
+        news_list = list(filter(
+            lambda news: search in news.get("title"),
+            news_list,
+        ))
 
     content = "<h1>News</h1>" +\
         "<p>This is news page.</p>" +\
+        "{count} 개의 뉴스 정보가 있습니다.".format(count=len(news_list)) +\
         "".join([
             "<h2>{title}</h2><img src={image_src}><p>{content}</p>".format(
                 title=news.get("title"),
@@ -31,7 +41,7 @@ def news(request):
                 content=news.get("content"),
             )
             for news
-            in news_dict["news"]
+            in news_list
         ])
 
     return HttpResponse(
