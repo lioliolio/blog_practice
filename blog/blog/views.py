@@ -1,6 +1,8 @@
 import json
 import requests
 
+from django.http.response import HttpResponse
+
 from blog.renderer import render
 
 def home(request):
