@@ -37,15 +37,11 @@ def news(request):
             news_list,
         ))
 
-    count = len(news_list)
-    news_content = "".join([
-        "<h2>{title}</h2><img src={image_src}><p>{content}</p>".format(
-            title=news.get("title"),
-            image_src=news.get("image"),
-            content=news.get("content"),
-        )
-        for news
-        in news_list
-    ])
+    template = loader.get_template("news.html")
 
-    pass
+    return HttpResponse(
+        template.render(
+            {"news_list": news_list},
+            request,
+        )
+    )
