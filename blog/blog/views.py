@@ -2,16 +2,16 @@ import json
 import requests
 
 from django.http.response import HttpResponse
-from django.template import loader
+from django.shortcuts import render
+
 
 def home(request):
-    template = loader.get_template("home.html")
-    return HttpResponse(
-        template.render(
-            {"site_name": "lioliolio's blog"},
-            request,
-        )
+    return render(
+        request,
+        "home.html",
+        {"site_name": "lioliolio's Blog"},
     )
+
 
 def room(request, room_id):
     url = "https://api.zigbang.com/v1/items?detail=true&item_ids=" + room_id
@@ -20,6 +20,7 @@ def room(request, room_id):
             response.content,
             content_type="application/json",
     )
+
 
 def news(request):
 
@@ -37,11 +38,8 @@ def news(request):
             news_list,
         ))
 
-    template = loader.get_template("news.html")
-
-    return HttpResponse(
-        template.render(
-            {"news_list": news_list},
-            request,
-        )
+    return render(
+        request,
+        "news.html",
+        {"news_list": news_list},
     )
