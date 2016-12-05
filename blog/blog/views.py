@@ -1,18 +1,15 @@
 import json
 import requests
 
-from django.http.response import HttpResponse
-from django.conf import settings
-
+from blog.renderer import render
 
 def home(request):
-    with open(settings.BASE_DIR + "/blog/templates/home.html", "r") as template:
-        content = template.read()
-        content = content.replace("## name ##", "lioliolio's Blog")
-
-        return HttpResponse(
-            content,
-        )
+    return render(
+        "home",
+        {
+            "name": "lioliolio's Blog",
+        }
+    )
 
 def room(request, room_id):
     url = "https://api.zigbang.com/v1/items?detail=true&item_ids=" + room_id
@@ -38,23 +35,21 @@ def news(request):
             news_list,
         ))
 
-    with open(settings.BASE_DIR + "/blog/templates/news.html", "r") as template:
-        content = template.read()
-
-        count = len(news_list)
-        news_content = "".join([
-            "<h2>{title}</h2><img src={image_src}><p>{content}</p>".format(
-                title=news.get("title"),
-                image_src=news.get("image"),
-                content=news.get("content"),
-            )
-            for news
-            in news_list
-        ])
-
-        content = content.replace("## count ##", str(count))
-        content = content.replace("## news_content ##", news_content)
-
-        return HttpResponse(
-            content,
+    count = len(news_list)
+    news_content = "".join([
+        "<h2>{title}</h2><img src={image_src}><p>{content}</p>".format(
+            title=news.get("title"),
+            image_src=news.get("image"),
+            content=news.get("content"),
         )
+        for news
+        in news_list
+    ])
+
+    return render(
+        "news",
+        {
+            "count": str(count),
+            "news_content": news_content,
+        },
+    )
