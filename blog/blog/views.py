@@ -6,7 +6,13 @@ from django.conf import settings
 
 
 def home(request):
-    return HttpResponse("<h1>Hello World!</h1><p>This is my blog!!!</p>")
+    with open(settings.BASE_DIR + "/blog/templates/home.html", "r") as template:
+        content = template.read()
+        content = content.replace("## name ##", "lioliolio's Blog")
+
+        return HttpResponse(
+            content,
+        )
 
 def room(request, room_id):
     url = "https://api.zigbang.com/v1/items?detail=true&item_ids=" + room_id
