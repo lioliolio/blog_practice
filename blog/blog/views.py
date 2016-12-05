@@ -35,16 +35,19 @@ def news(request):
     with open(settings.BASE_DIR + "/blog/templates/news.html", "r") as template:
         content = template.read()
 
-        content += "{count} 개의 뉴스 정보가 있습니다.".format(count=len(news_list)) +\
-            "".join([
-                "<h2>{title}</h2><img src={image_src}><p>{content}</p>".format(
-                    title=news.get("title"),
-                    image_src=news.get("image"),
-                    content=news.get("content"),
-                )
-                for news
-                in news_list
-            ])
+        count = len(news_list)
+        news_content = "".join([
+            "<h2>{title}</h2><img src={image_src}><p>{content}</p>".format(
+                title=news.get("title"),
+                image_src=news.get("image"),
+                content=news.get("content"),
+            )
+            for news
+            in news_list
+        ])
+
+        content = content.replace("## count ##", str(count))
+        content = content.replace("## news_content ##", news_content)
 
         return HttpResponse(
             content,
