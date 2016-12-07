@@ -12,10 +12,6 @@ urlpatterns = [
     url(r'^rooms/(?P<room_id>\d+)/$', room, name="room"),
     url(r'^news/$', news, name="news"),
     
-    url(r'^policy/', include([
-        url(r'terms/$', terms, name="terms"),
-        url(r'privacy/$', privacy, name="privacy"),
-        url(r'disclaimer/$', disclaimer, name="disclaimer"),
-    ], namespace="policy")),
+    url(r'^policy/', include("blog.urls.policy"), namespace="policy")),
 
 ]
