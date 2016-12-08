@@ -12,6 +12,9 @@ urlpatterns = [
     url(r'^rooms/(?P<room_id>\d+)/$', room, name="room"),
     url(r'^news/$', news, name="news"),
 
+    url(r'^posts/$', list, name="post-list"),
+    url(r'^posts/(?P<post_id>\d+)/$', detail, name="post-detail"),
+
     url(r'^policy/', include(("blog.urls.policy"), namespace="policy")),
 
 ]
