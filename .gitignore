@@ -94,5 +94,5 @@ db.sqlite3
 # swp File
 *.swp
 
-# Django migrations
-# migrations
+# Django migrations - ignore only on development
+migrations/
