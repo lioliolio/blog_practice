@@ -6,6 +6,9 @@
 {% if keyword %}
 <p><b>{{ keyword }}</b>(으)로 크롤링 된 네이버 포스트 입니다.</p>
 {% endif %}
+{% if query %}
+<p><b>{{ query }}</b>(이)가 제목에 포함된 네이버 포스트 입니다.</p>
+{% endif %}
 
 <ul>
     {% for naver_post in naver_posts %}
