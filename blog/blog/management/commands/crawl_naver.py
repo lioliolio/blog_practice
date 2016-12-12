@@ -1,3 +1,6 @@
+import requests
+from bs4 import BeautifulSoup
+
 from django.core.management.base import BaseCommand
 
 
@@ -10,5 +13,25 @@ class Command(BaseCommand):
         query = options.get("query")
 
         self.stdout.write("네이버에서 {query} 블로그 포스팅을 크롤링 합니다.".format(
-            query=query
+            query=query,
         ))
+
+        url = "https://search.naver.com/search.naver?where=post&query={query}".format(
+            query=query,
+        )
+
+        response = requests.get(url)
+        dom = BeautifulSoup(response.content, "html.parser")
+
+        post_elements = dom.select(".sh_blog_top")
+
+        for post_element in post_elements:
+            title_element = post_element.select_one(".sh_blog_title")
+            title = title_element.text
+            url = title_element.get("href")
+
+            content_element = post_element.select_one(".sh_blog_passage")
+            content = content_element.text
+
+            thumbnail_image_element = post_element.select_one(".sh_blog_thumbnail")
+            thumbnail_image_url = thumbnail_image_element.get("src")
