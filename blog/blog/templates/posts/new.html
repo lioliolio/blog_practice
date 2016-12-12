@@ -3,7 +3,7 @@
 {% block content %}
 <h1>New Post</h1>
 
-<form method="POST" action="/posts/create/">
+<form method="POST" action="{% url "posts:create" %}">
     {% csrf_token %}
     <input type="text" name="title" placeholder="제목">
     <input type="text" name="content" placeholder="본문">
