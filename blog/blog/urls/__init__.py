@@ -14,6 +14,8 @@ urlpatterns = [
 
     url(r'^posts/$', list, name="post-list"),
     url(r'^posts/(?P<post_id>\d+)/$', detail, name="post-detail"),
+    url(r'^posts/new/$', new, name="post-new"),
+    url(r'^posts/create/$', create, name="post-create"),
 
     url(r'^naver/posts$', naver_posts_list, name="naver-posts-list"),
 
