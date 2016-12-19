@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^news/$', news, name="news"),
 
     url(r'^posts/', include("blog.urls.posts", namespace="posts")),
+    url(r'^policy/', include("blog.urls.policy", namespace="policy")),
+    url(r'^', include("blog.urls.auth", namespace="auth")),
 
     url(r'^naver/posts$', naver_posts_list, name="naver-posts-list"),
 
