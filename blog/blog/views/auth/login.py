@@ -8,12 +8,14 @@ def login(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
 
+        next_page = request.POST.get("next_page") or reverse("auth:mypage")
+
         user = authenticate(username=username, password=password)
 
         if user:
             auth_login(request, user)
-            return redirect(reverse("home"))
-        return redirect(reverse("auth:login"))
+            return redirect(next_page)
+        return redirect(("auth:login"))
 
     return render(
         request,
