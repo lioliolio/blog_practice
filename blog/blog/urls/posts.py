@@ -5,7 +5,7 @@ from blog.views.posts import *
 
 urlpatterns = [
     url(r'^$', PostListView.as_view(), name="list"),
-    url(r'^(?P<post_id>\d+)/$', detail, name="detail"),
+    url(r'^(?P<pk>\d+)/$', PostDetailView.as_view(), name="detail"),
     url(r'^new/$', new, name="new"),
     url(r'^create/$', create, name="create"),
     url(r'^(?P<post_id>\d+)/edit/$', edit, name="edit"),

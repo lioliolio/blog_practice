@@ -1,4 +1,4 @@
-from .detail import detail
+from .detail import PostDetailView
 from .list import PostListView
 from .new import new
 from .create import create
