@@ -24,4 +24,4 @@ class LoginView(View):
         if user:
             login(request, user)
             return redirect(next_page)
-        return redirect(("auth:login"))
+        return redirect(reverse("auth:login"))
