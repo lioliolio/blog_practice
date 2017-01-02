@@ -6,7 +6,7 @@ class Bitlink(models.Model):
 
     user = models.ForeignKey(User)
 
-    original_url = models.URLField
+    original_url = models.URLField()
     shorten_hash = models.CharField(
         max_length=8,
         blank=True,
