@@ -19,7 +19,7 @@ class PostCommentCreateView(PostCommentBaseView, CreateView):
         form.instance.post = Post.objects.get(
             id=self.kwargs.get("post_id"),
         )
-        
+
         return super(PostCommentCreateView, self).form_valid(form)
 
 

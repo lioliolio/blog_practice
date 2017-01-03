@@ -1,4 +1,4 @@
-from django.db import models;
+from django.db import models
 
 
 class BitlinkLog(models.Model):
@@ -23,6 +23,9 @@ class BitlinkLog(models.Model):
         null=True,
     )
 
-    http_meta_json = models.TextField(blank=True, null=True, )
+    http_meta_json = models.TextField(
+        blank=True,
+        null=True,
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)

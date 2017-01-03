@@ -22,6 +22,6 @@ urlpatterns = [
     url(r'^naver/posts$', naver_posts_list, name="naver-posts-list"),
 
     url(r'^policy/', include("blog.urls.policy", namespace="policy")),
-    
+
     url(r'^bitly/', include("blog.urls.bitly", namespace="bitly")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
