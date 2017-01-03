@@ -1,0 +1,12 @@
+language: python
+python:
+    - "3.4"
+    - "3.5"
+install: 
+    - "pip install -r requirements/development.txt"
+script:
+    - pep8 blog/
+    - python blog/manage.py test users posts blog bitly
+
+notifications:
+    slack: lioliolio:6EqnA9vp9AenaT1VS19ccmPh
