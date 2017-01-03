@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^about/$', about, name="about"),
     url(r'^rooms/(?P<room_id>\d+)/$', room, name="room"),
     url(r'^news/$', news, name="news"),
+    url(r'^pricing/$', PricingView.as_view(), name="pricing"),
 
     url(r'^posts/', include("blog.urls.posts", namespace="posts")),
     url(r'^policy/', include("blog.urls.policy", namespace="policy")),

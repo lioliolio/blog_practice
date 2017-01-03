@@ -6,3 +6,4 @@ from .policy import terms, privacy, disclaimer
 from .naver_posts import naver_posts_list
 from .posts import *
 from .auth import *
+from .pricing import PricingView
